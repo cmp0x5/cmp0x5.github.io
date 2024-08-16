@@ -3,7 +3,7 @@ title: cmp0x5
 ---
 
 # site
-- [writeups](/blogs/test.html)
+- [writeups](/blogs/test.md)
 - [gpg](./assets/cmp0x5.asc)
 
 # links
