@@ -1,4 +1,5 @@
 ---
-title: cmp0x5
+layout: default
+title: Writeups
 ---
 # writeups
