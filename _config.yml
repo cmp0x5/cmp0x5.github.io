@@ -1,6 +1,7 @@
 title: cmp0x5
 description: Blog and user page
 theme: jekyll-theme-hacker
+show_downloads: false
 avatar: "/assets/images/favicon.ico"
 
 social-network-links:
