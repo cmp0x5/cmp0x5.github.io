@@ -37,29 +37,7 @@ function ativaTexto()
 setTimeout( ativaTexto, 1000 ); 
 setInterval( ativaTexto, 7000 ); 
 
-//function defineTexto()
-//{
-//    if ( indiceTexto == 2 )
-//    {
-//        indiceTexto = 0;
-//    }
-//    let texto;
-//    switch ( indiceTexto )
-//    {
-//        case 0:
-//            texto = 'cmp0x5';
-//            break;
-//        case 1:
-//            texto = 'cmp0x5';
-//            break;
-//        default:
-//            texto = 'cmp0x5';
-//            break;
-//    }
-//    indiceTexto++;
-//    return texto;
-//}
-//
+
 function geraCaractereAleatorio()
 {
     min = 33;
