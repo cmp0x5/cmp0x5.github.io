@@ -2,4 +2,7 @@
 layout: default
 title: Writeups
 ---
-# writeups
+# Writeups
+[Flare-On 11 - Checksum](/blog/checksum.md)
+
+[Cryptohack - Adrien's Signs](/blog/adrien.md)
