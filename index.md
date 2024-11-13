@@ -8,4 +8,3 @@ title: cmp0x5
 
 # links
 - [GitHub](https://github.com/cmp0x5)
-- [Blue Team Labs Online](https://blueteamlabs.online/public/user/08135998a2656a4da8fa1e)
