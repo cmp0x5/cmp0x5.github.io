@@ -78,6 +78,5 @@ for bit in ciphertext:
         flag += "1"
     else:
         flag += "0"
-
 ```
 Which converts the ciphertext back into the bits of our flag despite the randomness of `e`.
