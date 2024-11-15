@@ -12,7 +12,7 @@ And then some more additions, until eventually we are asked for a "Checksum":
 
 ![2](./pictures/checksum2.png)
 
-We can't determine this value without further analysing the binary. By loading the program on Detect It Easy, we notice that it's a Go binary:
+We can't determine this value without disassembling the program. By loading the executable on Detect It Easy, we notice that it's a Golang binary:
 
 ![3](./pictures/checksum3.png)
 
@@ -20,7 +20,7 @@ So, we need to disassemble the program (I recommend using Ghidra for this challe
 
 ![4](./pictures/checksum4.png)
 
-For the additions, we can see that the program generates two random numbers and scans the user's input to check whether the given answer is correct, printing "Try again! ;)" to the screen if the given answer is incorrect:
+For the additions, we can see that the program generates two random numbers and scans the user's input to check whether the given answer for the sum is correct, printing "Try again! ;)" to the screen and exiting in the case of an incorrect answer. 
 
 ![5](./pictures/checksum5.png)
 
@@ -31,7 +31,9 @@ Eventually, the program prompts the user for a "Checksum" and calls the function
 
 The `main.a` function XORs our "Checksum:" value with a key, "FlareOn2024", then base64 encodes it and compares it against a hard-coded base64 encoded value.
 
-Note the `keyIterator = iterator + (iterator / 0xb + (iterator >> 0x3f)) * -0xb` expression, which is essentially an obfuscated `iterator % key_length`, meant to reset the key "FlareOn2024" (of length 11) back to its beginning upon reaching its end as we XOR the checksum with the key. The term `(iterator / 0xb + (iterator >> 0x3f)) * -0xb` will result in 0 for values less than 11, then -11 for values between 12 and 21, etc
+Note the `keyIterator = iterator + (iterator / 0xb + (iterator >> 0x3f)) * -0xb` expression, which is essentially an obfuscated `iterator % key_length`, meant to reset the key "FlareOn2024" (of length 11) back to its beginning upon reaching its end as we XOR the checksum with the key. The term `(iterator / 0xb + (iterator >> 0x3f)) * -0xb` will result in 0 for values less than 11, then -11 for values between 12 and 21, etc. 
+
+`(iterator >> 0x3f)` shifts the value in `iterator` to the right by 63 bits and would only result in something greater than 0 after $2^{64}$ iterations, which is unlikely as it would require a string in excess of 18 exabytes.
 
 ![7](./pictures/checksum7.png)
 ![8](./pictures/checksum8.png)
@@ -58,7 +60,7 @@ print(original_bytes)
 output:
 `bytearray(b'7fd7dd1d0e959f74c133c13abb740b9faa61ab06bd0ecd177645e93b1e3825dd')`
 
-From the ending of the `main.main` function, we notice that upon entering the correct checksum value, the program will save a `REAL_FLAREON_FLAG.JPG` to the user's `os.UserCacheDir()` directory. On Windows, this will be the `C:\Users\<username>\AppData\Local` directory.
+From the ending of the `main.main` function, we notice that upon entering the correct checksum value, the program will save a `REAL_FLAREON_FLAG.JPG` to the user's `os.UserCacheDir()` directory. For Windows systems, the image will be saved to `C:\Users\<username>\AppData\Local\REAL_FLAREON_FLAG.JPG`.
 
 ![9](./pictures/checksum9.png)
 

@@ -54,7 +54,7 @@ Legendre's Symbol states that, for a prime number $p$:
 
 Since $288260533169915^\frac{1007621497415250}{2} \equiv 1 \pmod{1007621497415251}$, we can confirm that $a$ is a quadractic residue mod $p$.
 
-Remember that $p \equiv 3 \pmod{4}$. From the first supplement of quadractic reciprocity, we know that the negative of a quadractic residue modulo $p$ will always be a non-residue and vice-versa. This means we can use Legendre's Symbol to differentiate between a number and its additive inverse mod p. 
+Remember that $p \equiv 3 \pmod{4}$. From the first supplement of quadractic reciprocity, we know that the negative of a quadractic residue modulo $p$, $p \equiv 3 \pmod{4}$, will always be a non-residue and vice-versa. This means we can use Legendre's Symbol to differentiate between a number and its additive inverse mod p. 
 
 However, the numbers in the ciphertext are powers of $a$ in the range $(1, p)$. 
 Note that, for a quadractic residue $a$, there exists a value $x$ such that $x^2 \equiv a \pmod{p}$.
