@@ -10,7 +10,7 @@ Remember that in Eletronic Code Book (ECB) mode, blocks are encrypted independen
 
 In our challenge, the flag is being appended to the user input. Therefore, we can bruteforce each byte by isolating it within a block. For an example, if we give the program an input consisting of 15 `'a'` characters, the first block to be encrypted will consist of:
 
-$P1 = "aaaaaaaaaaaaaaa" + \text{1st byte of the flag}$
+$P1 = aaaaaaaaaaaaaaa + \text{1st byte of the flag}$
 
 To which the first ciphertext block will consist of:
 
@@ -20,7 +20,7 @@ To guess the first byte of the flag, we can just try to fill in the last byte of
 
 To bruteforce the second byte, the user can then just remove a byte from his/her input. As we now have 14 `'a'` characters, the second byte of the flag (`'r'`) will be included within the first block, which will give us the ciphertext block to be found. 
 
-$P1 = "aaaaaaaaaaaaaac" + \text{2nd byte of the flag}$
+$P1 = aaaaaaaaaaaaaac + \text{2nd byte of the flag}$
 
 We can just add the characters found thus far to the string being bruteforced and repeat the process until it is complete.
 

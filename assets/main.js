@@ -1,23 +1,20 @@
-var textoTemp = '######'; 
-
-var indiceTexto = 0;
+var tempText = '######'; 
 
 nick = document.getElementById("nick");
 
-nick.innerHTML = textoTemp + "<span class=\"blink\">_</span>";
+nick.innerHTML = tempText + "<span class=\"blink\">_</span>";
 
-function ativaTexto()
+function activateText()
 {
-    let iteracao = 0;
-    //let texto = defineTexto();
+    let it = 0;
 	let texto = 'cmp0x5'
     let i;
-    var timer2 = setInterval( escreveCaracteres, 100 )
-    function escreveCaracteres()
+    var timer2 = setInterval( writeChars, 100 )
+    function writeChars()
     {
         for ( i = 0; i < texto.length; i++ )
         {
-            if ( iteracao == 65 )
+            if ( it == 65 )
             {
                 clearInterval( timer2 );
                 nick.innerHTML = texto += "<span class=\"blink\">_</span>";
@@ -25,20 +22,20 @@ function ativaTexto()
             }
             else
             {
-                iteracao++;
-                let char1 = geraCaractereAleatorio();
-                textoTemp = textoTemp.substring(0, i) + char1 + textoTemp.substring(i+1); 
-                nick.innerHTML = textoTemp + "_";
+                it++;
+                let char1 = getRandomChar();
+                tempText = tempText.substring(0, i) + char1 + tempText.substring(i+1); 
+                nick.innerHTML = tempText + "_";
             }
         }
     }
 }
 
-setTimeout( ativaTexto, 1000 ); 
-setInterval( ativaTexto, 7000 ); 
+setTimeout( activateText, 1000 ); 
+setInterval( activateText, 7000 ); 
 
 
-function geraCaractereAleatorio()
+function getRandomChar()
 {
     min = 33;
     max = 126;
