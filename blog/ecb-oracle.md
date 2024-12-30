@@ -4,6 +4,30 @@ title: ECB Oracle
 ---
 
 # Cryptohack - ECB Oracle
+
+```
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+
+
+KEY = ?
+FLAG = ?
+
+
+@chal.route('/ecb_oracle/encrypt/<plaintext>/')
+def encrypt(plaintext):
+    plaintext = bytes.fromhex(plaintext)
+
+    padded = pad(plaintext + FLAG.encode(), 16)
+    cipher = AES.new(KEY, AES.MODE_ECB)
+    try:
+        encrypted = cipher.encrypt(padded)
+    except ValueError as e:
+        return {"error": str(e)}
+
+    return {"ciphertext": encrypted.hex()}
+```
+
 In this challenge, the flag is appended to the user input. The resulting plaintext is padded to blocks of 16 and then encrypted using AES in Electronic Code Book (ECB) mode. The user must leverage the determistic nature of ECB mode encryption (since there's no IV to provide randomness) to obtain the flag by bruteforcing each individual byte, such that the ciphertext for each block matches the output given by the program. 
 
 Remember that in Eletronic Code Book (ECB) mode, blocks are encrypted independently. So, for plaintext consisting of 42 bytes, bytes 1-16 will always be encrypted in  the first block of the ciphertext, 17-32 in the second block, and 33-42 will be padded to 48 and encrypted in the third block of the ciphertext.
