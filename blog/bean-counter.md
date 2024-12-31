@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Checksum
+title: Bean Counter
 ---
 
 # Cryptohack - Bean Counter
@@ -58,7 +58,7 @@ Fortunately, PNG files follow a structure in which their first 16 bytes - the si
 ![1](./pictures/beancounter1.png)
 
 - `89 50 4E 47 0D 0A 1A 0A`: First 8 bytes consisting of the magic number
-- `00 00 00 0d`: IHDR Chunk length (big endian), always 13 bytes
+- `00 00 00 0d`: IHDR Chunk length (big endian), always 0x0d (13) bytes
 - `49 48 44 52`: IHDR Chunk type - literally just 'IHDR' in ASCII.
 
 Therefore, we may use the following code to write the decrypted image to our working directory:
