@@ -6,7 +6,7 @@ title: Checksum
 # Cryptohack - Bean Counter
 This challenge features a .png image being encrypted by a 'custom' implementation of CTR mode on AES, as shown by the code below:
 
-```
+```python
 from Crypto.Cipher import AES
 
 
@@ -62,7 +62,7 @@ Fortunately, PNG files follow a structure in which their first 16 bytes - the si
 - `49 48 44 52`: IHDR Chunk type - literally just 'IHDR' in ASCII.
 
 Therefore, we may use the following code to write the decrypted image to our working directory:
-```
+```python
 import requests
 
 r = requests.get('https://aes.cryptohack.org/bean_counter/encrypt/')
