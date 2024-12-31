@@ -53,7 +53,7 @@ CTR mode, when properly implemented, works by applying AES encryption to a conca
 
 The above code builds upon PyCrypto's ECB mode for a custom CTR implementation, but a quick look at the `StepUpCounter` class reveals that the counter is poorly implemented - Note how `self.stup` will always be False, which results in the counter never being altered. This means that the same keystream will be used for each plaintext block being encrypted. Thus, by knowing any of the plaintext blocks that were encrypted by the code, we can discover the keystream that was used to XOR the rest of the file and decrypt the image fully.
 
-Fortunately, PNG files follow a structure in which their first 16 bytes - the size of the first block - are always known to us. You can verify this by opening any PNG image in a hex viewer:
+Fortunately, PNG files follow a structure in which their first 16 bytes - conveniently, the exact size of the first block - are always known to us. You can verify this by opening any PNG image in a hex viewer:
 
 ![1](./pictures/beancounter1.png)
 
