@@ -111,5 +111,3 @@ for address, decoded_str in strings.items():
     createLabel(addr, decoded_str.replace(' ','_'), False)
     setEOLComment(addr, decoded_str)
 ```
-
-This allows us to look at how each string is used in the code itself.
