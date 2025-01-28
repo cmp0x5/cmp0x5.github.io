@@ -5,7 +5,7 @@ title: SpectreRAT v10
 
 # SpectreRAT v10 - pt1
 
-This is an analysis of a sample of SpectreRAT that was featured in an [OALABS](https://www.openanalysis.net/) stream. We'll look at decoding the strings and examining the malware's functionality.
+This is an analysis of a sample of SpectreRAT that was featured in an [OALABS](https://www.openanalysis.net/) stream. We'll recap the stream and examine the malware's functionality.
 
 SHA256 hash: `734a22c413872a8b5f6fc5342261b9ff2c256c1891bb258747ff000df960ce4f`
 
@@ -36,7 +36,7 @@ After setting up a breakpoint in `WinMain` (to ensure the program doesn't actual
 
 We can then use the dump in a Ghidra script to add these strings to their respective addresses to continue our static analysis - In my case, for a base address of 0x00BC0000:
 
-```
+```python
 strings = {
 0xC10A7C: "76E894005c2DE86E40b032a0931D2ABC05C6eB36ACb1C18F5b640aD24Bbc9454",
 0x6FFCD4: "OzYuOT02LjY1LDUw",
@@ -110,4 +110,44 @@ for address, decoded_str in strings.items():
     addr = toAddr(address)
     createLabel(addr, decoded_str.replace(' ','_'), False)
     setEOLComment(addr, decoded_str)
+```
+
+The very first decoded string, a 32-byte hash, is interesting to us. Looking at its xrefs, we find that the hash is being copied into an address which is later dereferenced by a decryption function, which indicates that the hash is the key:
+
+![hash](./pictures/hash.png)
+
+`FUN_00bc9262`'s first argument is then passed to `FUN_00bc9397`, which handles decryption:
+
+![decrypt](./pictures/decryption.png)
+
+The Ghidra decompiler and the assembly seem to put the AND operation before the decryption XOR, which is an interesting discrepancy as IDA Pro seems to (correctly) decompile the code with the XOR operation preceding the AND. To examine the decryption, we can get the three base64 strings we saw previously, decode and try to decrypt them:
+
+```python
+import base64
+
+data1 = b"OzYuOT02LjY1LDUw"
+data2 = b"ZWN0bXtjYXJtZ2xjaXxjbWFya28sYW9t"
+data3 = b"Y2xnbWRpbmFpaGRmZnpnZHJpYWssYW9t"
+
+data1 = base64.b64decode(data1)
+data2 = base64.b64decode(data2)
+data3 = base64.b64decode(data3)
+
+key = b"76E894005c2DE86E40b032a0931D2ABC05C6eB36ACb1C18F5b640aD24Bbc9454"
+
+def decrypt(data):
+    plaintext = []
+    for i in range(len(data)):
+        plaintext.append(data[i] ^ key[i % len(key)] & 0xa)
+    print(bytes(plaintext))
+
+decrypt(data1)
+decrypt(data2)
+decrypt(data3)
+```
+Which outputs the following network Indicators of Compromise (IoC)s:
+```
+b'94.156.65.70'
+b'gatescarmencitamario.com'
+b'angelinaijfffredrick.com'
 ```
