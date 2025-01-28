@@ -146,8 +146,9 @@ decrypt(data2)
 decrypt(data3)
 ```
 Which outputs the following network Indicators of Compromise (IoC)s:
+
 ```
-b'94.156.65.70'
-b'gatescarmencitamario.com'
-b'angelinaijfffredrick.com'
+94[.]156[.]65[.]70
+gatescarmencitamario[.]com
+angelinaijfffredrick[.]com
 ```
