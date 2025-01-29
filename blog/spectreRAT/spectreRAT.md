@@ -3,7 +3,7 @@ layout: default
 title: SpectreRAT v10
 ---
 
-# SpectreRAT v10 - pt1
+# SpectreRAT v10 
 
 This is an analysis of a sample of SpectreRAT that was featured in an [OALABS](https://www.openanalysis.net/) stream. We'll recap the stream and examine the malware's functionality.
 

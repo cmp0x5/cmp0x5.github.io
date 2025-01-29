@@ -4,6 +4,8 @@ title: Checksum
 ---
 
 # Flare On 11 - Checksum
+This was the 2nd challenge of Mandiant’s Flare-On CTF in 2024. It’s a fairly straightforward reverse engineering challenge, and obfuscation is mostly derived from the Go language itself than any specific anti-analysis techniques.
+
 Opening the file, we can see that it asks us to compute the result of an addition:
 
 ![1](./pictures/checksum1.png)
