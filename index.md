@@ -3,7 +3,7 @@ title: cmp0x5 | Reverse Engineering/Cryptography
 ---
 
 # site
-- [writeups](/blog/index.md)
+- [Writeups](/blog/index.md)
 - PGP public key: [download](./assets/cmp0x5.asc)
 
 # links
