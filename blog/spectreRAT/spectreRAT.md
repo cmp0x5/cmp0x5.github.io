@@ -120,8 +120,11 @@ The very first decoded string, a 32-byte hash, is interesting to us. Looking at 
 
 ![decrypt](./pictures/decryption.png)
 
-The Ghidra decompiler and the assembly seem to put the AND operation before the decryption XOR, which is an interesting discrepancy as IDA Pro seems to (correctly) decompile the code with the XOR operation preceding the AND. To examine the decryption, we can get the three base64 strings we saw previously, decode and try to decrypt them:
-
+Interestingly, the Ghidra decompiler seems to incorrectly put the AND operation before the XOR decryption. The same line, when decompiled in IDA Pro, shows a different result:
+```
+*(_BYTE *)(v18 + v15) = *((_BYTE *)v16 + v15) ^ *((_BYTE *)v17 + v13) & 0xA;
+```
+To examine the decryption, we can get the three base64 strings we saw in the string dump, decode them and use the decryption function to get their plaintext outputs:
 ```python
 import base64
 
