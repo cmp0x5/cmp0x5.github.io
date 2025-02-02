@@ -1,5 +1,5 @@
 ---
-title: cmp0x5 | Reverse Engineering/Cryptography
+title: cmp0x5 | reverse Engineering/cryptography
 ---
 
 # site
