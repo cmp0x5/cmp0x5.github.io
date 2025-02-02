@@ -34,4 +34,6 @@ InstallUtil
 ngentask
 ```
 
-Which is then copied to the location at `C:\ProgramData\{random 4 lowercase letters}\{random 5 lowercase letters}º.exe`. The malware then proceeds to create a process at this file, allocate virtual memory, write the shellcode into memory and execute it with `CreateRemoteThread`.
+Which is then copied to the location at  `C:\ProgramData\{random 4 lowercase letters}\{random 5 lowercase letters}º.exe`.
+
+The malware then proceeds to create a process at this file, allocate virtual memory, write the shellcode into memory and execute it with `CreateRemoteThread`.
