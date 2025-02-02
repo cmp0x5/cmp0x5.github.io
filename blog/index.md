@@ -3,6 +3,7 @@ layout: default
 title: Writeups
 ---
 # Writeups
+- [EvilBoleto - .NET RAT distributed via Whatsapp](/blog/evilboleto/evilboleto)
 - [SpectreRAT v10 Analysis](/blog/spectreRAT/spectreRAT)
 - [Cryptohack - Bean Counter](/blog/bean-counter/bean-counter)
 - [Cryptohack - ECB Oracle](/blog/ecb-oracle/ecb-oracle)
