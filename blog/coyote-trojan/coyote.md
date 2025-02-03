@@ -2,7 +2,7 @@
 layout: default
 title: Coyote
 ---
-# Coyote Trojan
+# Coyote
 
 ## Overview
 - .NET Remote Access Tool

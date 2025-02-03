@@ -3,7 +3,7 @@ layout: default
 title: Writeups
 ---
 # Writeups
-- [Coyote Trojan - .NET RAT distributed via WhatsApp](/blog/evilboleto/evilboleto)
+- [Coyote Trojan - .NET RAT distributed via WhatsApp](/blog/coyote-trojan/coyote)
 - [SpectreRAT v10 Analysis](/blog/spectreRAT/spectreRAT)
 - [Cryptohack - Bean Counter](/blog/bean-counter/bean-counter)
 - [Cryptohack - ECB Oracle](/blog/ecb-oracle/ecb-oracle)
