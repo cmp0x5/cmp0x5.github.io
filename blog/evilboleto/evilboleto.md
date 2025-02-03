@@ -1,8 +1,8 @@
 ---
 layout: default
-title: EvilBoleto
+title: Coyote
 ---
-# EvilBoleto
+# Coyote Trojan
 
 ## Overview
 - .NET Remote Access Tool
