@@ -90,10 +90,10 @@ function frame()
     //dz += 1 * dt;
     angle += Math.PI * dt;
     clear()
-    for (const v of vertices) {
-        point(screen(project(translate_z(rotate_xz(v, angle), dz))))
-
-    }
+    //for (const v of vertices) {
+    //    point(screen(project(translate_z(rotate_xz(v, angle), dz))))
+    //
+    //}
     for (const f of faces) {
         for (let i = 0; i < f.length; ++i)
         {
