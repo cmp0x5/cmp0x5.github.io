@@ -81,6 +81,16 @@ function rotate_xz({x, y, z}, angle) {
     }; 
 }
 
+function rotate_yz({x, y, z}, angle) {
+    const c = Math.cos(angle);
+    const s = Math.sin(angle);
+    return {
+        x,
+        y: y*c - z*s,
+        z: y*s + z*c,
+    };
+}
+
 let dz = 1;
 let angle = 0;
 
@@ -88,7 +98,9 @@ function frame()
 { 
     const dt = 1/FPS;
     //dz += 1 * dt;
-    angle += Math.PI * dt;
+    //angle += Math.PI * dt;
+    angle -= Math.PI * dt;
+
     clear()
     //for (const v of vertices) {
     //    point(screen(project(translate_z(rotate_xz(v, angle), dz))))
@@ -99,9 +111,14 @@ function frame()
         {
             const a = vertices[f[i]];
             const b = vertices[f[(i+1)%f.length]];
+            //line(
+            //    screen(project(translate_z(rotate_xz(a, angle), dz))),
+            //    screen(project(translate_z(rotate_xz(b, angle), dz)))       
+        //)
             line(
-                screen(project(translate_z(rotate_xz(a, angle), dz))),
-                screen(project(translate_z(rotate_xz(b, angle), dz)))
+                screen(project(translate_z(rotate_yz(a, angle), dz))),
+                screen(project(translate_z(rotate_yz(b, angle), dz)))
+                
         )
         }
     }
