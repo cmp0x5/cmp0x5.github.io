@@ -99,7 +99,8 @@ function frame()
     const dt = 1/FPS;
     //dz += 1 * dt;
     //angle += Math.PI * dt;
-    angle -= Math.PI * dt;
+    //angle -= Math.PI * dt;
+    angle -= Math.PI * dt * 20;
 
     clear()
     //for (const v of vertices) {
